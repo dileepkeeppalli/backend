@@ -1,0 +1,16 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:3.2.4
+    container_name: "mongodb"
+    ports:
+      - 27017:27017
+    command: --smallfiles
+    volumes:
+      - ./data/mongodata:/data/mongodata
+  app:
+    image: demo/gradle-java-spring-boot
+    ports:
+      - 8080:8080
+    links:
+      - mongodb
